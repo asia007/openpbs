@@ -487,7 +487,6 @@ pbsd_init(int type)
 #endif /* not DEBUG and not NO_SECURITY_CHECK */
 
 	time_now = time(NULL);
-
 	rc = setup_resc(1);
 	if (rc != 0) {
 		/* log_buffer set in setup_resc */
@@ -1756,6 +1755,14 @@ need_y_response(int type, char *txt)
 {
 	static int answ = -2;
 	int c;
+
+	/* Auto-accept in non-interactive mode (Docker containers, etc.) */
+	if (answ != -2)
+		return;
+	if (!isatty(0)) {
+		answ = 'y';
+		return;
+	}
 	char *t[] = {"Hot",
 		     "Warm",
 		     "Cold",

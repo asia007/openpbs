@@ -1093,7 +1093,9 @@ main(int argc, char **argv)
 			return (2);
 		}
 	}
-	pbs_close_stdfiles();
+	/* Keep stdout/stderr open in foreground (-N) mode for Docker logs */
+	if (stalone != 1)
+		pbs_close_stdfiles();
 #else  /* DEBUG is defined */
 	sid = getpid();
 	(void) setvbuf(stdout, NULL, _IOLBF, 0);

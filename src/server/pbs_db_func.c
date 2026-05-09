@@ -321,8 +321,9 @@ get_db_connect_information()
 		/*
 		 * External database configured,  infinite timeout, database instance not in our control
 		 */
-		conn_timeout = PBS_DB_CNT_TIMEOUT_INFINITE;
+		conn_timeout = 30; /* external DB: 30s timeout */
 		strncpy(conn_db_host, pbs_conf.pbs_data_service_host, PBS_MAXSERVERNAME);
+		conn_db_state = PBS_DB_STARTED;
 	} else {
 		/*
 		 * Database is in our control, we need to figure out the status of the database first
