@@ -1,0 +1,26 @@
+# .dockerignore - 排除不需要的文件加速 Docker 构建
+.git
+.claude
+docs
+*.o
+*.lo
+*.la
+.libs
+.deps
+Makefile
+Makefile.in
+config.status
+config.log
+config.h
+stamp-h1
+autom4te.cache
+libtool
+aclocal.m4
+*.tar.gz
+*.rpm
+.gitignore
+.github
+azure-pipelines.yml
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+README.md
